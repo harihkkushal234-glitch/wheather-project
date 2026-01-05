@@ -1,0 +1,7 @@
+import sqlite3
+import pandas as pd
+
+conn = sqlite3.connect("weather_data.db")
+df = pd.read_sql("SELECT * FROM weather;", conn)
+df.to_csv("weather_data.csv", index=False)
+conn.close()
