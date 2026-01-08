@@ -1,7 +1,7 @@
 import sqlite3
 import pandas as pd
 
-def export_to_csv(db_name="weather_data.db", table_name="weather_state", csv_name="weather_state.csv"):
+def export_to_csv(db_name="weather_data.db", table_name="weather_city", csv_name="weather_city.csv"):
     # Connect to the SQLite database
     conn = sqlite3.connect(db_name)
 
