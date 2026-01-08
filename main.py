@@ -1,18 +1,16 @@
-from extract import extract_data
-from transform import transform_data
-from load import load_data
+from extract import extract_state_data
+from transform import transform_state_data
+from load import load_state_data
 
 def run_etl():
-    cities = ["Bengaluru", "Mumbai", "Delhi", "Chennai", "Kolkata" , "Ramanagara"]
-
     print("🔹 Extracting data...")
-    raw_df = extract_data(cities)
+    raw_df = extract_state_data()
 
     print("🔹 Transforming data...")
-    clean_df = transform_data(raw_df)
+    city_df, state_df = transform_state_data(raw_df)
 
     print("🔹 Loading data into database...")
-    load_data(clean_df)
+    load_state_data(city_df, state_df)
 
     print("✅ ETL process completed successfully!")
 
