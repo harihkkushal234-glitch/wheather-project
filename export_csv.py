@@ -1,16 +1,18 @@
 import sqlite3
 import pandas as pd
 
-# Connect to your SQLite database
-conn = sqlite3.connect("weather_data.db")
+def export_to_csv(db_name="weather_data.db", table_name="weather_state", csv_name="weather_state.csv"):
+    # Connect to the SQLite database
+    conn = sqlite3.connect(db_name)
 
-# Read the entire weather table into a DataFrame
-df = pd.read_sql("SELECT * FROM weather;", conn)
+    # Read the table into a DataFrame
+    df = pd.read_sql(f"SELECT * FROM {table_name};", conn)
 
-# Export to CSV
-df.to_csv("weather_data.csv", index=False)
+    # Export to CSV
+    df.to_csv(csv_name, index=False)
 
-# Close connection
-conn.close()
+    conn.close()
+    print(f"✅ Exported {table_name} to {csv_name}")
 
-print("✅ Data exported successfully to weather_data.csv")
+if __name__ == "__main__":
+    export_to_csv()
